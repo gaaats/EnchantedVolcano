@@ -5,10 +5,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.*
-import androidx.appcompat.app.AppCompatActivity
 import android.provider.MediaStore
 import android.webkit.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.appsflyer.AppsFlyerLib
 import com.google.android.material.snackbar.Snackbar
 import com.onesignal.OneSignal
@@ -24,7 +24,6 @@ import java.io.IOException
 class WeeeeebStartActivity : AppCompatActivity() {
     private val FILECHOOSERRESULTCODE = 1
 
-    // the same for Android 5.0 methods only
     var mFilePathCallback: ValueCallback<Array<Uri>>? = null
     var mCameraPhotoPath: String? = null
     lateinit var vv: WebView
@@ -83,7 +82,6 @@ class WeeeeebStartActivity : AppCompatActivity() {
 
             override fun onPageFinished(view: WebView, url: String) {
                 super.onPageFinished(view, url)
-                //Save the last visited URL
                 saveUrl(url)
             }
 
@@ -114,10 +112,8 @@ class WeeeeebStartActivity : AppCompatActivity() {
                         photoFile = createImageFile()
                         takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath)
                     } catch (ex: IOException) {
-                        // Error occurred while creating the File
-                    }
 
-                    // continue only if the file was successfully created
+                    }
                     if (photoFile != null) {
                         mCameraPhotoPath = "file:" + photoFile.absolutePath
                         takePictureIntent.putExtra(
@@ -143,7 +139,6 @@ class WeeeeebStartActivity : AppCompatActivity() {
                 return true
             }
 
-            // creating image files (Lollipop only)
             @Throws(IOException::class)
             private fun createImageFile(): File {
                 var imageStorageDir = File(
@@ -154,7 +149,6 @@ class WeeeeebStartActivity : AppCompatActivity() {
                     imageStorageDir.mkdirs()
                 }
 
-                // create an image file name
                 imageStorageDir =
                     File(imageStorageDir.toString() + File.separator + "IMG_" + System.currentTimeMillis() + ".jpg")
                 return imageStorageDir
@@ -167,7 +161,6 @@ class WeeeeebStartActivity : AppCompatActivity() {
 
 
     private fun pushToOneSignal(string: String) {
-// Setting External User Id with Callback Available in SDK Version 4.0.0+
         OneSignal.setExternalUserId(
             string,
             object : OneSignal.OSExternalUserIdUpdateCompletionHandler {
@@ -209,8 +202,6 @@ class WeeeeebStartActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(error: OneSignal.ExternalIdError) {
-                    // The results will contain channel failure statuses
-                    // Use this to detect if external_user_id was not set and retry when a better network connection is made
                     OneSignal.onesignalLog(
                         OneSignal.LOG_LEVEL.VERBOSE,
                         "Set external user id done with error: $error"
@@ -313,10 +304,9 @@ class WeeeeebStartActivity : AppCompatActivity() {
         }
         var results: Array<Uri>? = null
 
-        // check that the response is a good one
         if (resultCode == AppCompatActivity.RESULT_OK) {
             if (data == null || data.data == null) {
-                // if there is not data, then we may have taken a photo
+
                 results = arrayOf(Uri.parse(mCameraPhotoPath))
             } else {
                 val dataString = data.dataString

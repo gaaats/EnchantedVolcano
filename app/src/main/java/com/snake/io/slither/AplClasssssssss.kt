@@ -15,15 +15,15 @@ class AplClasssssssss: Application() {
         const val jsoupCheck = "1c4v"
         const val ONESIGNAL_APP_ID = "27031b24-0e90-424c-bec0-7726ad09dd3f"
 
-        val linkFilterPart1 = "http://enchanted"
-        val linkFilterPart2 = "volcano.xyz/go.php?to=1&"
         val linkAppsCheckPart1 = "http://enchanted"
         val linkAppsCheckPart2 = "volcano.xyz/apps.txt"
-
+        val linkFilterPart1 = "http://enchanted"
+        val linkFilterPart2 = "volcano.xyz/go.php?to=1&"
         val odone = "sub_id_1="
 
         var MAIN_ID: String? = ""
         var C1: String? = "c11"
+        var C13: String? = "c13"
         var D1: String? = "d11"
         var CH: String? = "check"
 
@@ -39,6 +39,7 @@ class AplClasssssssss: Application() {
         // OneSignal Initialization
         OneSignal.initWithContext(this)
         OneSignal.setAppId(ONESIGNAL_APP_ID)
+
     }
 
     private suspend fun applyDeviceId(context: Context) {

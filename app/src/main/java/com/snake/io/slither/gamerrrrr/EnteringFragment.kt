@@ -40,6 +40,9 @@ class EnteringFragment : Fragment() {
             binding.btnHeart.setOnClickListener {
                 Snackbar.make(binding.root, "I love you too ♥♥♥", Snackbar.LENGTH_LONG).show()
             }
+            binding.btnHeart1.setOnClickListener {
+                Snackbar.make(binding.root, "I love you too ♥♥♥", Snackbar.LENGTH_LONG).show()
+            }
 
             binding.lotLeftDovn.setOnClickListener {
                 findNavController().navigate(R.id.action_enteringFragment_to_endFinishFragment)

