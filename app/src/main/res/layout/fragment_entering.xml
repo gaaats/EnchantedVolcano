@@ -241,7 +241,7 @@
         android:textAllCaps="true"
         android:fontFamily="@font/opensans_regular"
         android:text="@string/app_name_author"
-        android:textColor="@color/add_colour_the_most_bright"
+        android:textColor="@color/bright"
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

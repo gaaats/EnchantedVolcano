@@ -1,11 +1,10 @@
 <resources>
-    <string name="app_name">Enchanted Volcano</string>
+    <string name="name_off_the_app">Enchanted Volcano</string>
 
     <string name="app_name_author">© Enchanted Volcano</string>
-    <string name="image_chooser">Choose Image</string>
+    <string name="image_pic_choose">Choose Image</string>
 
-
-    <string name="facebook_app_id">645236637273772</string>
+    <string name="faaaaaacebook_app_id">645236637273772</string>
     <string name="fb_login_protocol_scheme">fb645236637273772</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

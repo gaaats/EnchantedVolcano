@@ -6,20 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.snake.io.slither.R
 import com.snake.io.slither.databinding.FragmentEndFinishBinding
 
 class EndFinishFragment : Fragment() {
-    private var _binding: FragmentEndFinishBinding? = null
-    private val binding get() = _binding ?: throw RuntimeException("FragmentStartBinding = null")
+    private var _bindingggggg: FragmentEndFinishBinding? = null
+    private val binding get() = _bindingggggg ?: throw RuntimeException("FragmentStartBinding = null")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentEndFinishBinding.inflate(inflater, container, false)
+        _bindingggggg = FragmentEndFinishBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,7 +31,7 @@ class EndFinishFragment : Fragment() {
             }
 
         } catch (e: Exception) {
-            snackBarError()
+            ooooopsEror()
         }
 
 
@@ -41,11 +39,11 @@ class EndFinishFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        _binding = null
+        _bindingggggg = null
         super.onDestroy()
     }
 
-    private fun snackBarError() {
+    private fun ooooopsEror() {
         Snackbar.make(
             binding.root,
             "There is some error, try again",
@@ -57,7 +55,7 @@ class EndFinishFragment : Fragment() {
     private fun initAlertDialog() {
         AlertDialog.Builder(requireContext())
             .setTitle("Exit")
-            .setMessage("Are you definitely want to log out, the current data will not be saved?")
+            .setMessage("Are you reaaaaly want to exit, the current data will not be save?")
             .setPositiveButton("Yes, Exit") { _, _ ->
                 requireActivity().finish()
             }

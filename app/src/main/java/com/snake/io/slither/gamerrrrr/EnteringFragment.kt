@@ -1,7 +1,5 @@
 package com.snake.io.slither.gamerrrrr
 
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,24 +16,25 @@ import kotlinx.coroutines.launch
 
 class EnteringFragment : Fragment() {
 
-    var counter = 0.05f
-    var diff = 0.05f
+    var counterAlpha = 0.05f
+    var diffAlpha = 0.05f
 
-    private var _binding: FragmentEnteringBinding? = null
-    private val binding get() = _binding ?: throw RuntimeException("FragmentStartBinding = null")
+    private var _biiiiiiinding: FragmentEnteringBinding? = null
+    private val binding
+        get() = _biiiiiiinding ?: throw RuntimeException("FragmentStartBinding = null")
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentEnteringBinding.inflate(inflater, container, false)
+        _biiiiiiinding = FragmentEnteringBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         try {
-            cycleUpAndDovnAlpha()
+            makeCycleUpAndDovnAlpha()
 
             binding.btnHeart.setOnClickListener {
                 Snackbar.make(binding.root, "I love you too ♥♥♥", Snackbar.LENGTH_LONG).show()
@@ -57,20 +56,18 @@ class EnteringFragment : Fragment() {
                 findNavController().navigate(R.id.action_enteringFragment_to_endFinishFragment)
             }
         } catch (e: Exception) {
-            snackBarError()
+            makeError()
         }
-
-
 
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroy() {
-        _binding = null
+        _biiiiiiinding = null
         super.onDestroy()
     }
 
-    private fun snackBarError() {
+    private fun makeError() {
         Snackbar.make(
             binding.root,
             "There is some error, try again",
@@ -80,18 +77,18 @@ class EnteringFragment : Fragment() {
     }
 
 
-    private fun cycleUpAndDovnAlpha() {
+    private fun makeCycleUpAndDovnAlpha() {
         lifecycleScope.launch {
             while (true) {
-                binding.tvTitle.alpha = counter
-                if (counter >= 1f) {
-                    diff = -0.05f
+                binding.tvTitle.alpha = counterAlpha
+                if (counterAlpha >= 1f) {
+                    diffAlpha = -0.05f
                 }
-                if (counter <= 0.1f) {
-                    diff = 0.05f
+                if (counterAlpha <= 0.1f) {
+                    diffAlpha = 0.05f
                 }
                 delay(30)
-                counter += diff
+                counterAlpha += diffAlpha
             }
         }
     }

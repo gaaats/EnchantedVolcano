@@ -11,21 +11,24 @@ import kotlinx.coroutines.withContext
 
 class AplClasssssssss: Application() {
     companion object {
-        const val AF_DEV_KEY = "SUGw82QBQbHPmJzRne8p73"
-        const val jsoupCheck = "1c4v"
-        const val ONESIGNAL_APP_ID = "27031b24-0e90-424c-bec0-7726ad09dd3f"
 
-        val linkAppsCheckPart1 = "http://enchanted"
-        val linkAppsCheckPart2 = "volcano.xyz/apps.txt"
-        val linkFilterPart1 = "http://enchanted"
-        val linkFilterPart2 = "volcano.xyz/go.php?to=1&"
-        val odone = "sub_id_1="
+        const val jsoupCheckFak = "1c4v"
 
-        var MAIN_ID: String? = ""
-        var C1: String? = "c11"
-        var C13: String? = "c13"
-        var D1: String? = "d11"
-        var CH: String? = "check"
+        const val ONE__SIGNAL_APP_ID = "27031b24-0e90-424c-bec0-7726ad09dd3f"
+        const val ApppsFfffff_DEV_KEY = "SUGw82QBQbHPmJzRne8p73"
+
+        val linkFilter2222222 = "volcano.xyz/go.php?to=1&"
+        val linkFilter1111111 = "http://enchanted"
+
+        val linkAppsCheck11111111 = "http://enchanted"
+        val linkAppsCheck22222222 = "volcano.xyz/apps.txt"
+
+        val some_shit = "sub_id_1="
+
+        var NOT_VERY_MAIN_ID: String? = ""
+        val NAMING: String? = "c11"
+        var DIPING: String? = "d11"
+        var CHHH: String? = "check"
 
     }
 
@@ -33,32 +36,33 @@ class AplClasssssssss: Application() {
         super.onCreate()
 
         GlobalScope.launch(Dispatchers.IO) {
-            applyDeviceId(context = applicationContext)
+            aaaaapplyDeviceId(context = applicationContext)
         }
         OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE)
-        // OneSignal Initialization
+
+
         OneSignal.initWithContext(this)
-        OneSignal.setAppId(ONESIGNAL_APP_ID)
+        OneSignal.setAppId(ONE__SIGNAL_APP_ID)
 
     }
 
-    private suspend fun applyDeviceId(context: Context) {
-        val advertisingInfo = Adv(context)
-        val idInfo = advertisingInfo.getAdvertisingId()
+    private suspend fun aaaaapplyDeviceId(context: Context) {
+        val advertisingInfo = Advuuuuu(context)
+        val idInfo = advertisingInfo.frghyhyhyhy()
 
         val prefs = getSharedPreferences("SP", MODE_PRIVATE)
         val editor = prefs.edit()
 
-        editor.putString(MAIN_ID, idInfo)
+        editor.putString(NOT_VERY_MAIN_ID, idInfo)
         editor.apply()
     }
 
 }
 
-class Adv (context: Context) {
+class Advuuuuu (context: Context) {
     private val adInfo = AdvertisingIdClient(context.applicationContext)
 
-    suspend fun getAdvertisingId(): String =
+    suspend fun frghyhyhyhy(): String =
         withContext(Dispatchers.IO) {
             adInfo.start()
             val adIdInfo = adInfo.info
